@@ -4,7 +4,7 @@ title: Como o conteúdo é entendido
 tags: Interpretação
 ---
 
-## Objetivo
+## Objetivão
 Aprender como o usuário absorve e explica um conteúdo novo. Este teste ajudará o pesquisador a entender melhor a clareza de um determinado conteúdo e quais são os pontos que ressonam melhor com um usuário novato.
 
 ## Situações recomendadas
