@@ -17,13 +17,38 @@ permalink: /
             {% for col in collections.all %}
                 {% if forloop.first %}
                     <h2>Escolha uma pesquisa</h2>
-                    <ul>
+                    <form>
+                        <label for="tag">O que você quer analisar?</label>
+                        <select id="tag" class="" name="tag">
+                            <option value="">Exibir tudo</option>
+                            {% tagsAsOptions collections.all %}
+                        </select>
+                    </form>
+
+                    <ul data-scripts>
                 {% endif %}
                     {% if col.url contains "research-scripts" %}
-                        <li><a href="{{col.url}}">{{col.data.title}} ({{col.data.tags.0}})</a></li>
+                        <li data-tag="{{col.data.tags.0}}"><a href="{{col.url}}">{{col.data.title}} ({{col.data.tags.0}})</a></li>
                     {% endif %}
                 {% if forloop.last %}</ul>{% endif %}
             {% endfor %}
+
+            <script type="text/javascript">
+                var select = document.querySelector("[name=tag]");
+                var scriptsLi = document.querySelectorAll("[data-scripts] li");
+
+                select.addEventListener("change", (evt)=>{
+                    let tag = evt.target.value;
+                    filter(tag);
+                });
+
+                function filter(tag) {
+                    scriptsLi.forEach((li) => {
+                        if(tag && li.getAttribute('data-tag') != tag) li.style.display = "none";
+                        else li.style.display = "block";
+                    });
+                }
+            </script>
         </main>
     </body>
 </html>

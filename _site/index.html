@@ -13,23 +13,48 @@
             
                 
                     <h2>Escolha uma pesquisa</h2>
-                    <ul>
+                    <form>
+                        <label for="tag">O que você quer analisar?</label>
+                        <select id="tag" class="" name="tag">
+                            <option value="">Exibir tudo</option>
+                            <option value="Interpretação">Interpretação</option><option value="Memória">Memória</option>
+                        </select>
+                    </form>
+
+                    <ul data-scripts>
                 
                     
-                        <li><a href="/research-scripts/conteudo-entendido/">Como o conteúdo é entendido (Interpretação)</a></li>
+                        <li data-tag="Interpretação"><a href="/research-scripts/conteudo-entendido/">Como o conteúdo é entendido (Interpretação)</a></li>
                     
                 
             
                 
                     
+                        <li data-tag="Memória"><a href="/research-scripts/teste-3-minutos/">Teste de 3 minutos (Memória)</a></li>
+                    
                 
             
                 
-                    
-                        <li><a href="/research-scripts/teste-3-minutos/">Teste de 3 minutos (Memória)</a></li>
                     
                 </ul>
             
+
+            <script type="text/javascript">
+                var select = document.querySelector("[name=tag]");
+                var scriptsLi = document.querySelectorAll("[data-scripts] li");
+
+                select.addEventListener("change", (evt)=>{
+                    let tag = evt.target.value;
+                    filter(tag);
+                });
+
+                function filter(tag) {
+                    scriptsLi.forEach((li) => {
+                        if(tag && li.getAttribute('data-tag') != tag) li.style.display = "none";
+                        else li.style.display = "block";
+                    });
+                }
+            </script>
         </main>
     </body>
 </html>
