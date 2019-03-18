@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <main class="container">
+            {% for col in collections.all %}
+                {% if col.inputPath contains 'index' %}<a href="{{col.url}}">{{col.data.title}}</a>{% endif %}
+            {% endfor %}
+            <h1>{{title}}</h1>
+            <p><b>Tag</b>: {{tags.0}}</p>
+            {{ content | safe }}
+        </main>
+    </body>
+</html>

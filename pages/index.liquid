@@ -1,0 +1,29 @@
+---
+title: Home
+permalink: /
+---
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <main class="container">
+            <h1>Research Scripts</h1>
+
+            {% for col in collections.all %}
+                {% if forloop.first %}
+                    <h2>Escolha uma pesquisa</h2>
+                    <ul>
+                {% endif %}
+                    {% if col.url contains "research-scripts" %}
+                        <li><a href="{{col.url}}">{{col.data.title}} ({{col.data.tags.0}})</a></li>
+                    {% endif %}
+                {% if forloop.last %}</ul>{% endif %}
+            {% endfor %}
+        </main>
+    </body>
+</html>
